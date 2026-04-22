@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Calculator | MC Utility Hub</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --card-bg: #0a0a0a;
+            --rainbow: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        h1 {
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowMove 4s linear infinite;
+            background-size: 200% auto;
+            letter-spacing: 3px;
+            margin-top: 50px;
+        }
+
+        .calc-container {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 25px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+
+        p { color: #888; margin-bottom: 25px; }
+
+        input {
+            width: 100%;
+            padding: 20px;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 15px;
+            color: #00ff00;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus { border-color: #555; box-shadow: 0 0 20px rgba(0,255,0,0.1); }
+
+        .results {
+            margin-top: 40px;
+            display: none; /* Only shows when user types */
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .item-name { font-size: 1.1rem; color: #ddd; }
+        .item-qty { font-size: 1.3rem; font-weight: bold; color: #ff7f00; }
+
+        .back-btn {
+            margin-top: 40px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <h1>INGREDIENTS CALC</h1>
+    
+    <div class="calc-container">
+        <p>Enter the number of potions you want to brew:</p>
+        <input type="number" id="potionInput" placeholder="0" oninput="doCalculation()">
+
+        <div class="results" id="resultBox">
+            <div class="item-row">
+                <span class="item-name">Glass Bottles</span>
+                <span class="item-qty" id="res-bottles">0</span>
+            </div>
+            <div class="item-row">
+                <span class="item-name">Nether Wart</span>
+                <span class="item-qty" id="res-wart">0</span>
+            </div>
+            <div class="item-row">
+                <span class="item-name">Blaze Powder (Fuel)</span>
+                <span class="item-qty" id="res-fuel">0</span>
+            </div>
+            <div style="font-size: 0.7rem; color: #444; margin-top: 20px; text-align: left;">
+                *Note: Calculations are based on 3-bottle batches. 1 Blaze Powder lasts for 20 brewing operations.
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← BACK TO PORTAL</a>
+    </div>
+
+    <script>
+        function doCalculation() {
+            const count = document.getElementById('potionInput').value;
+            const resBox = document.getElementById('resultBox');
+
+            if (count > 0) {
+                resBox.style.display = "block";
+                
+                // Calculation Logic
+                document.getElementById('res-bottles').innerText = count;
+                document.getElementById('res-wart').innerText = Math.ceil(count / 3);
+                document.getElementById('res-fuel').innerText = Math.ceil(count / 20);
+            } else {
+                resBox.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
