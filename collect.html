@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot Guide | MC Utility Hub</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --card-bg: #0a0a0a;
+            --rainbow: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        h1 {
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowMove 4s linear infinite;
+            background-size: 200% auto;
+            letter-spacing: 3px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .guide-container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 30px;
+            padding-bottom: 100px;
+        }
+
+        .category-title {
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin: 40px 0 15px 0;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+
+        .item-card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .item-card:hover {
+            border-color: #333;
+            transform: scale(1.01);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .name { font-size: 1.4rem; font-weight: bold; color: #fff; }
+        .chance { font-size: 0.8rem; color: #00ff00; background: #002200; padding: 4px 10px; border-radius: 5px; }
+
+        .detail-box { color: #aaa; font-size: 0.95rem; line-height: 1.6; }
+        .location { color: #ffa726; font-weight: bold; }
+        .method { color: #4fc3f7; font-style: italic; }
+
+        .back-btn {
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid #222;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: white; border-color: white; }
+    </style>
+</head>
+<body>
+
+    <h1>HOW TO COLLECT SHAMAN</h1>
+    <a href="index.html" class="back-btn">← BACK TO PORTAL</a>
+
+    <div class="guide-container">
+        
+        <div class="category-title">Essential Machines</div>
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Brewing Stand</span>
+                <span class="chance">100% Guaranteed</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Villages (Cleric's Tower), Igloo Basements, or End Ships.<br>
+                <span class="method">How to Craft:</span> 1 Blaze Rod + 3 Cobblestones (using Crafting Table).<br>
+                <strong>Pro Tip:</strong> It is the heart of brewing. Without this, you cannot mix any potions.
+            </div>
+        </div>
+
+        <div class="category-title">Primary Ingredients</div>
+        
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Blaze Rod</span>
+                <span class="chance">50% Drop Rate</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Nether Fortress.<br>
+                <span class="method">How to get:</span> Kill <strong>Blazes</strong> near their spawners.<br>
+                <strong>Pro Tip:</strong> Use a Looting III sword to increase drop chance to 100% and get up to 4 rods.
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Nether Wart</span>
+                <span class="chance">Common Loot</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Nether Fortresses & Bastion Remnants.<br>
+                <span class="method">How to get:</span> Found growing on Soul Sand near fortress staircases.<br>
+                <strong>Pro Tip:</strong> Always bring Soul Sand back home to start your own Nether Wart farm in the Overworld.
+            </div>
+        </div>
+
+        <div class="category-title">Rare Mob Drops</div>
+
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Ghast Tear</span>
+                <span class="chance">33% Drop Rate</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Nether (Skies).<br>
+                <span class="method">How to get:</span> Kill <strong>Ghasts</strong> while they are flying above solid ground.<br>
+                <strong>Pro Tip:</strong> Be careful! If the tear falls into lava, it will burn and disappear forever.
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Phantom Membrane</span>
+                <span class="chance">50% Drop Rate</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Overworld (Night Time).<br>
+                <span class="method">How to get:</span> Phantoms appear if you haven't slept for 3 days. Kill them.<br>
+                <strong>Pro Tip:</strong> Used for Slow Falling potions, which are essential for fighting the Ender Dragon.
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="item-header">
+                <span class="name">Pufferfish</span>
+                <span class="chance">13% Fishing Chance</span>
+            </div>
+            <div class="detail-box">
+                <span class="location">Location:</span> Warm Oceans.<br>
+                <span class="method">How to get:</span> Use a Fishing Rod or catch them directly with a Water Bucket.<br>
+                <strong>Pro Tip:</strong> Required for Water Breathing potions. Don't eat it, it's poisonous!
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
