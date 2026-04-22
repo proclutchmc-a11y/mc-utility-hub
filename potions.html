@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potion Database | MC Utility Hub</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --card-bg: #0a0a0a;
+            --rainbow: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Header Styling */
+        .nav-header {
+            width: 100%;
+            padding: 20px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .back-btn {
+            color: #777;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { color: white; border-color: white; }
+
+        h1 {
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowMove 4s linear infinite;
+            background-size: 200% auto;
+            letter-spacing: 3px;
+        }
+
+        /* Search Box */
+        .search-container { width: 90%; max-width: 600px; margin: 40px 0; }
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        .search-input:focus { border-color: #555; box-shadow: 0 0 15px rgba(255,255,255,0.1); }
+
+        /* Potion Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            width: 90%;
+            max-width: 1200px;
+            padding-bottom: 100px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #333;
+        }
+
+        .potion-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #222;
+            color: #888;
+        }
+
+        .guide-box {
+            margin-top: 20px;
+            background: #000;
+            border-radius: 12px;
+            padding: 15px;
+            display: none; /* Hidden by default */
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-left: 2px solid #444;
+        }
+
+        .step { color: #4caf50; font-weight: bold; }
+        .item { color: #ffa726; }
+
+        .view-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <a href="index.html" class="back-btn">← BACK TO PORTAL</a>
+        <h1>BREWING DATABASE</h1>
+        <div style="width: 100px;"></div> </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" id="search" placeholder="Search potions (e.g. Strength, Fire, Speed)..." onkeyup="searchPotion()">
+    </div>
+
+    <div class="grid" id="potionGrid">
+        </div>
+
+    <script>
+        const potionData = [
+            {
+                name: "Strength II",
+                effect: "+3 Melee Damage",
+                ingredients: "Nether Wart, Blaze Powder, Glowstone",
+                steps: "<span class='step'>1.</span> Fuel with Blaze Powder.<br><span class='step'>2.</span> Water Bottle + <span class='item'>Nether Wart</span> = Awkward Potion.<br><span class='step'>3.</span> Add <span class='item'>Blaze Powder</span> = Strength I.<br><span class='step'>4.</span> Add <span class='item'>Glowstone Dust</span> = Strength II."
+            },
+            {
+                name: "Fire Resistance",
+                effect: "Immune to Lava",
+                ingredients: "Nether Wart, Magma Cream, Redstone",
+                steps: "<span class='step'>1.</span> Fuel with Blaze Powder.<br><span class='step'>2.</span> Water Bottle + <span class='item'>Nether Wart</span> = Awkward Potion.<br><span class='step'>3.</span> Add <span class='item'>Magma Cream</span> = Fire Res (3:00).<br><span class='step'>4.</span> Add <span class='item'>Redstone</span> = Fire Res (8:00)."
+            },
+            {
+                name: "Instant Health II",
+                effect: "Instant Healing",
+                ingredients: "Nether Wart, Glistering Melon, Glowstone, Gunpowder",
+                steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Glistering Melon</span> = Health I.<br><span class='step'>2.</span> Add <span class='item'>Glowstone</span> = Health II.<br><span class='step'>3.</span> Add <span class='item'>Gunpowder</span> = Splash Potion (Throw at feet)."
+            },
+            {
+                name: "Swiftness II",
+                effect: "+40% Movement Speed",
+                ingredients: "Nether Wart, Sugar, Glowstone",
+                steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Sugar</span> = Speed I.<br><span class='step'>2.</span> Add <span class='item'>Glowstone</span> = Speed II."
+            },
+            {
+                name: "Night Vision",
+                effect: "See in total darkness",
+                ingredients: "Nether Wart, Golden Carrot, Redstone",
+                steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Golden Carrot</span> = Night Vision (3:00).<br><span class='step'>2.</span> Add <span class='item'>Redstone Dust</span> = Night Vision (8:00)."
+            }
+        ];
+
+        function renderPotions(data) {
+            const grid = document.getElementById('potionGrid');
+            grid.innerHTML = data.map((p, index) => `
+                <div class="card">
+                    <div class="potion-title">${p.name} <span class="tag">v1.21</span></div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">${p.effect}</p>
+                    <p style="font-size: 0.85rem;"><span style="color: #444;">Items:</span> ${p.ingredients}</p>
+                    
+                    <div class="guide-box" id="guide-${index}">
+                        <p style="margin: 0; color: #aaa;"><strong>Brewing Steps:</strong></p>
+                        ${p.steps}
+                    </div>
+
+                    <button class="view-btn" onclick="toggleGuide(${index})">VIEW BREWING STEPS</button>
+                </div>
+            `).join('');
+        }
+
+        function toggleGuide(index) {
+            const guide = document.getElementById(`guide-${index}`);
+            const btn = document.querySelectorAll('.view-btn')[index];
+            if (guide.style.display === "block") {
+                guide.style.display = "none";
+                btn.innerText = "VIEW BREWING STEPS";
+            } else {
+                guide.style.display = "block";
+                btn.innerText = "HIDE STEPS";
+            }
+        }
+
+        function searchPotion() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const filtered = potionData.filter(p => p.name.toLowerCase().includes(input));
+            renderPotions(filtered);
+        }
+
+        renderPotions(potionData);
+    </script>
+</body>
+</html>
