@@ -1,42 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Utility Hub | Potion Recipes</title>
+    <title>MC Utility Hub | Rainbow Gaming Portal</title>
     <style>
-        body { background-color: #1a1a1a; color: #f0f0f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 20px; }
-        .header { background: #388e3c; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .search-bar { width: 80%; padding: 12px; font-size: 18px; border-radius: 25px; border: none; margin-bottom: 30px; }
-        .potion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #2d2d2d; border: 1px solid #444; border-radius: 15px; padding: 20px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #4caf50; }
-        .btn { background: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        /* 1. Global Styles & Reset */
+        :root {
+            --bg-color: #000000; /* Pure Black Background */
+            --card-bg: #111111;  /* Slightly Lighter Card Background */
+            --text-color: #ffffff;
+            --rainbow-gradient: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 2. Keyframes for Rainbow Animation (Har 3s mein loop) */
+        @keyframes rainbowShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3. Animated Rainbow Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            border-bottom: 3px solid transparent;
+            border-image: var(--rainbow-gradient);
+            border-image-slice: 1;
+            animation: rainbowShift 3s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: var(--rainbow-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowShift 3s linear infinite;
+            background-size: 200% 200%;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 900;
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        /* 4. Portal Grid Structure */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            width: 90%;
+            max-width: 1200px;
+            padding: 60px 0;
+        }
+
+        /* 5. Rainbow Animated Portal Cards */
+        .portal-card {
+            background: var(--card-bg);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: 0.4s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hover Effect: Border color shifts to Rainbow */
+        .portal-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-image: var(--rainbow-gradient);
+            border-image-slice: 1;
+            animation: rainbowShift 3s linear infinite;
+            background-size: 200% 200%;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Glimmer effect inside card on hover */
+        .portal-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.03);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+        .portal-card:hover::after {
+            opacity: 1;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        }
+
+        .portal-card h2 {
+            margin: 15px 0;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .portal-card p {
+            font-size: 1rem;
+            color: #bbb;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* 6. Glowing Rainbow Buttons */
+        .status-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid #555;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .portal-card:hover .status-btn {
+            background: var(--rainbow-gradient);
+            border-color: transparent;
+            animation: rainbowShift 3s linear infinite;
+            background-size: 200% 200%;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .portal-grid { grid-template-columns: 1fr; gap: 30px; }
+            .portal-card { padding: 25px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🧪 MC Utility Hub</h1>
-            <p>Faster than Wiki - Updated for 1.21</p>
+
+    <div class="header">
+        <h1>MC UTILITY HUB</h1>
+        <p>Minecraft Ki Duniya Ka Sabse Makkhan Helper - Updated for v1.21</p>
+    </div>
+
+    <div class="portal-grid">
+        <div class="portal-card" onclick="window.location.href='potions.html'">
+            <span class="icon">🧪</span>
+            <h2>Potion Recipes</h2>
+            <p>Saari potions ki step-by-step recipes aur unke effects yahan dekhein. Ekdum easy guide.</p>
+            <button class="status-btn">Open Guide</button>
         </div>
-        <input type="text" class="search-bar" placeholder="Search Potion (Strength, Speed...)" id="myInput">
-        
-        <div class="potion-grid">
-            <div class="card">
-                <h3>Strength Potion</h3>
-                <p>Effect: +3 Melee Damage</p>
-                <p>Main Item: <b>Blaze Powder</b></p>
-                <button class="btn">Full Recipe</button>
-            </div>
-            <div class="card">
-                <h3>Speed Potion</h3>
-                <p>Effect: +20% Speed</p>
-                <p>Main Item: <b>Sugar</b></p>
-                <button class="btn">Full Recipe</button>
-            </div>
+
+        <div class="portal-card" onclick="window.location.href='calculator.html'">
+            <span class="icon">🧮</span>
+            <h2>Resources Calculator</h2>
+            <p>Calculate karein ki aapko kitna Blaze Powder, Nether Wart, aur Sugar chahiye.</p>
+            <button class="status-btn">Open Tool</button>
+        </div>
+
+        <div class="portal-card" onclick="window.location.href='collect.html'">
+            <span class="icon">⚔️</span>
+            <h2>How to Collect</h2>
+            <p>Saman (Resources) kahan milenge? Mobs, Bastions, aur Nether ki khatarnak tips.</p>
+            <button class="status-btn">Open Guide</button>
         </div>
     </div>
+
+    <footer style="margin-bottom: 30px; color: #444; font-size: 0.9rem;">
+        Created with ❤️ by ProClutchMC 🚀
+    </footer>
+
 </body>
 </html>
