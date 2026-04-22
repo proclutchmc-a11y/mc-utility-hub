@@ -195,7 +195,36 @@
                 steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Golden Carrot</span> = Night Vision (3:00).<br><span class='step'>2.</span> Add <span class='item'>Redstone Dust</span> = Night Vision (8:00)."
             }
         ];
-
+,{
+    name: "Invisibility",
+    effect: "Full transparency (Remove armor)",
+    ingredients: "Night Vision Potion, Fermented Spider Eye",
+    steps: "<span class='step'>1.</span> Start with <span class='item'>Night Vision Potion</span>.<br><span class='step'>2.</span> Add <span class='item'>Fermented Spider Eye</span> = Invisibility (3:00).<br><span class='step'>3.</span> Add <span class='item'>Redstone</span> = Invisibility (8:00)."
+},
+{
+    name: "Regeneration II",
+    effect: "Heal hearts over time",
+    ingredients: "Nether Wart, Ghast Tear, Glowstone",
+    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Ghast Tear</span> = Regeneration I.<br><span class='step'>2.</span> Add <span class='item'>Glowstone</span> = Regeneration II (Fast Healing).<br><span class='step'>3.</span> Add <span class='item'>Redstone</span> = Regeneration (Long duration)."
+},
+{
+    name: "Water Breathing",
+    effect: "Unlimited oxygen underwater",
+    ingredients: "Nether Wart, Pufferfish, Redstone",
+    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Pufferfish</span> = Water Breathing (3:00).<br><span class='step'>2.</span> Add <span class='item'>Redstone</span> = Water Breathing (8:00)."
+},
+{
+    name: "Slow Falling",
+    effect: "Fall slowly & no fall damage",
+    ingredients: "Nether Wart, Phantom Membrane, Redstone",
+    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Phantom Membrane</span> = Slow Falling (1:30).<br><span class='step'>2.</span> Add <span class='item'>Redstone</span> = Slow Falling (4:00)."
+},
+{
+    name: "Weakness (Splash)",
+    effect: "Cures Zombie Villagers",
+    ingredients: "Water Bottle, Fermented Spider Eye, Gunpowder",
+    steps: "<span class='step'>1.</span> Water Bottle + <span class='item'>Fermented Spider Eye</span> = Weakness (No Nether Wart needed).<br><span class='step'>2.</span> Add <span class='item'>Gunpowder</span> = Splash Potion of Weakness."
+}
         function renderPotions(data) {
             const grid = document.getElementById('potionGrid');
             grid.innerHTML = data.map((p, index) => `
@@ -236,34 +265,3 @@
     </script>
 </body>
 </html>
-// Is data ko apne existing potionData array ke neeche paste kar do
-{
-    name: "Invisibility",
-    effect: "Full transparency (Remove armor)",
-    ingredients: "Night Vision Potion, Fermented Spider Eye",
-    steps: "<span class='step'>1.</span> Start with <span class='item'>Night Vision Potion</span>.<br><span class='step'>2.</span> Add <span class='item'>Fermented Spider Eye</span> = Invisibility (3:00).<br><span class='step'>3.</span> Add <span class='item'>Redstone</span> = Invisibility (8:00)."
-},
-{
-    name: "Regeneration II",
-    effect: "Heal hearts over time",
-    ingredients: "Nether Wart, Ghast Tear, Glowstone",
-    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Ghast Tear</span> = Regeneration I.<br><span class='step'>2.</span> Add <span class='item'>Glowstone</span> = Regeneration II (Fast Healing).<br><span class='step'>3.</span> Add <span class='item'>Redstone</span> = Regeneration (Long duration)."
-},
-{
-    name: "Water Breathing",
-    effect: "Unlimited oxygen underwater",
-    ingredients: "Nether Wart, Pufferfish, Redstone",
-    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Pufferfish</span> = Water Breathing (3:00).<br><span class='step'>2.</span> Add <span class='item'>Redstone</span> = Water Breathing (8:00)."
-},
-{
-    name: "Slow Falling",
-    effect: "Fall slowly & no fall damage",
-    ingredients: "Nether Wart, Phantom Membrane, Redstone",
-    steps: "<span class='step'>1.</span> Awkward Potion + <span class='item'>Phantom Membrane</span> = Slow Falling (1:30).<br><span class='step'>2.</span> Add <span class='item'>Redstone</span> = Slow Falling (4:00)."
-},
-{
-    name: "Weakness (Splash)",
-    effect: "Cures Zombie Villagers",
-    ingredients: "Water Bottle, Fermented Spider Eye, Gunpowder",
-    steps: "<span class='step'>1.</span> Water Bottle + <span class='item'>Fermented Spider Eye</span> = Weakness (No Nether Wart needed).<br><span class='step'>2.</span> Add <span class='item'>Gunpowder</span> = Splash Potion of Weakness."
-}
